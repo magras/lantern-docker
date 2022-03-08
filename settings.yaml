@@ -1,0 +1,9 @@
+addr: '[::]:39331'
+autoLaunch: false
+autoReport: false
+googleAds: false
+lang: en-US
+proxyAll: true
+socksAddr: '[::]:39332'
+systemProxy: false
+uiAddr: 0.0.0.0:39333

@@ -1,0 +1,8 @@
+services:
+  lantern:
+    build: .
+    ports: 127.0.0.1:39331-39333:39331-39333
+    volumes: data:/home/lantern/.lantern
+    restart: unless-stopped
+volumes:
+  data:

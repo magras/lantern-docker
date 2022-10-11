@@ -1,8 +1,12 @@
 services:
   lantern:
+    container_name: lantern
+    image: lantern:7.0.0-beta2
     build: .
-    ports: 127.0.0.1:39331-39333:39331-39333
-    volumes: data:/home/lantern/.lantern
-    restart: unless-stopped
+    ports:
+      - 127.0.0.1:39331-39333:39331-39333
+    volumes:
+      - data:/home/lantern/.lantern
 volumes:
   data:
+    name: lantern

@@ -1,4 +1,4 @@
-FROM docker.io/ubuntu:20.04
+FROM docker.io/ubuntu:22.04
 
 RUN apt-get update && apt-get upgrade -y
 RUN apt-get install -y --no-install-recommends libappindicator3-1 libpcap0.8

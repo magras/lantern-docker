@@ -1,11 +1,7 @@
 FROM docker.io/ubuntu:20.04
 
-RUN rm -f /etc/apt/apt.conf.d/docker-clean; echo 'Binary::apt::APT::Keep-Downloaded-Packages "true";' > /etc/apt/apt.conf.d/keep-cache
-RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
-    --mount=type=cache,target=/var/lib/apt,sharing=locked \
-    apt-get update && apt-get install -y \
-        libappindicator3-1 \
-        libpcap0.8
+RUN apt-get update && apt-get upgrade -y
+RUN apt-get install -y --no-install-recommends libappindicator3-1 libpcap0.8
 
 COPY binaries/lantern-installer-64-bit.deb /root
 RUN dpkg -i /root/lantern-installer-64-bit.deb

@@ -7,17 +7,17 @@ services:
       # UI
       - target: 80
         host_ip: 127.0.0.1
-        published: 39331
+        published: ${UI_PORT:-39331}
         protocol: tcp
       # HTTP(S) proxy
       - target: 8080
         host_ip: 127.0.0.1
-        published: 39332
+        published: ${HTTP_PORT:-39332}
         protocol: tcp
       # SOCKS proxy
       - target: 1080
         host_ip: 127.0.0.1
-        published: 39333
+        published: ${SOCKS_PORT:-39333}
         protocol: tcp
     volumes:
       - data:/home/lantern/.lantern

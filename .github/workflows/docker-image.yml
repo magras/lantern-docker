@@ -23,6 +23,10 @@ jobs:
       uses: docker/metadata-action@v4
       with:
         images: ${{secrets.DOCKERHUB_USERNAME}}/lantern
+        tags: |
+          type=semver,pattern={{version}}
+          type=edge
+          type=ref,event=pr
 
     - uses: docker/login-action@v2
       with:

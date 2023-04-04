@@ -2,8 +2,7 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main" ]
-    tags: [ "v*.*.*" ]
+    branches: [ "main", "lantern-*" ]
     paths:
       - ".github/workflows/docker-image.yml"
       - "Dockerfile"
@@ -30,7 +29,7 @@ jobs:
       with:
         images: docker.io/magras/lantern
         tags: |
-          type=semver,pattern={{version}}
+          type=match,value=${{github.ref_name}},pattern=lantern-(.*),group=1
           type=edge
           type=ref,event=pr
 

@@ -1,4 +1,4 @@
-# Docker container for [Lantern](https://lantern.io).
+# Docker container for [Lantern](https://lantern.io)
 
 ## TL;DR
 

@@ -1,8 +1,9 @@
 name: Docker Image CI
 
 on:
+  workflow_dispatch:
   push:
-    branches: [ "main", "lantern-*" ]
+    branches: [ "main" ]
     paths:
       - ".github/workflows/docker-image.yml"
       - "Dockerfile"
@@ -24,14 +25,20 @@ jobs:
         submodules: recursive
         lfs: true
 
+    - run: >-
+        echo "LANTERN_VERSION=$(
+          dpkg-deb -I binaries/lantern-installer-64-bit.deb |
+          sed -n 's/^ Version: \(.*\)/\1/p'
+        )" >> $GITHUB_ENV
+
     - id: meta
       uses: docker/metadata-action@v4
       with:
-        images: docker.io/magras/lantern
+        images: magras/lantern
         tags: |
-          type=match,value=${{github.ref_name}},pattern=lantern-(.*),group=1
-          type=edge
-          type=ref,event=pr
+          type=edge,priority=3
+          type=ref,event=pr,priority=2
+          type=semver,pattern={{version}},value=${{env.LANTERN_VERSION}},priority=1
 
     - uses: docker/login-action@v2
       with:
@@ -41,7 +48,7 @@ jobs:
     - uses: docker/build-push-action@v4
       with:
         context: .
-        push: ${{github.event_name == 'push'}}
+        push: ${{github.event_name != 'pull_request'}}
         tags: ${{steps.meta.outputs.tags}}
         labels: ${{steps.meta.outputs.labels}}
         cache-to: type=inline

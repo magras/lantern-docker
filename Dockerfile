@@ -1,7 +1,7 @@
 FROM docker.io/ubuntu:22.04
 
 RUN apt-get update && apt-get upgrade -y
-RUN apt-get install -y --no-install-recommends libappindicator3-1 libpcap0.8
+RUN apt-get install -y --no-install-recommends libayatana-appindicator3-1 libpcap0.8
 
 COPY binaries/lantern-installer-64-bit.deb /root
 RUN dpkg -i /root/lantern-installer-64-bit.deb

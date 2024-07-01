@@ -6,8 +6,11 @@ RUN apt-get update && apt-get upgrade -y && \
 COPY binaries/lantern-installer-64-bit.deb /root
 RUN dpkg -i /root/lantern-installer-64-bit.deb
 
-RUN groupadd -g 1000 lantern && \
-    useradd -m -s /usr/sbin/nologin -u 1000 -g 1000 lantern
+ARG UID=1000
+ARG GID=1000
+
+RUN groupadd -g "$GID" lantern && \
+    useradd -m -s /usr/sbin/nologin -u "$UID" -g "$GID" lantern
 
 COPY --chown=lantern:lantern settings.yaml /home/lantern/.lantern/
 

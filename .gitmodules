@@ -1,3 +1,4 @@
 [submodule "lantern-binaries"]
 	path = binaries
 	url = https://github.com/getlantern/lantern-binaries.git
+	shallow = true

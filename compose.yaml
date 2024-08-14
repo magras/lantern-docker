@@ -1,7 +1,7 @@
 services:
   lantern:
     container_name: lantern
-    image: docker.io/magras/lantern:7.9.1
+    image: docker.io/magras/lantern:7.9.2
     build: .
     ports:
       # UI

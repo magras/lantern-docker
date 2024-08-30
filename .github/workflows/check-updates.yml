@@ -16,7 +16,6 @@ jobs:
           repository: getlantern/lantern-binaries
           path: lantern-binaries
           #sparse-checkout: lantern-installer-64-bit.deb
-      - uses: actions/checkout@v4
       - run: >-
           set -ex
           ls -aR $GITHUB_WORKSPACE 1>&2

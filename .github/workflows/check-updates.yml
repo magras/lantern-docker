@@ -21,6 +21,6 @@ jobs:
           sparse-checkout-cone-mode: false
       - run: |
           set -x
-          A=$(cd lantern-docker && git ls-tree HEAD binaries | sed -n 's/^160000 commit \([[:xdigit:]]\{40\}\)\tbinaries$/\1/p')
+          A=$(cd lantern-docker && git ls-tree check-updates binaries | sed -n 's/^160000 commit \([[:xdigit:]]\{40\}\)\tbinaries$/\1/p')
           B=$(cd lantern-binaries && git rev-list -1 HEAD lantern-installer-64-bit.deb)
           [ "$A" = "$B" ]

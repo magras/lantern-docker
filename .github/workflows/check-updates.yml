@@ -17,6 +17,7 @@ jobs:
         with:
           repository: getlantern/lantern-binaries
           path: lantern-binaries
+          fetch-depth: 0
           sparse-checkout: /lantern-installer-64-bit.deb
           sparse-checkout-cone-mode: false
       - run: |

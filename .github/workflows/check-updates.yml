@@ -17,8 +17,8 @@ jobs:
           path: lantern-binaries
           #sparse-checkout: lantern-installer-64-bit.deb
       - run: |
-          #set -ex
-          ls -aR $GITHUB_WORKSPACE 1>&2
+          set -x
+          #ls -aR $GITHUB_WORKSPACE 1>&2
           A=$(cd "$GITHUB_WORKSPACE/lantern-docker" && git ls-tree HEAD binaries | sed -n 's/^160000 commit \([[:xdigit:]]\{40\}\)\tbinaries$/\1/p')
           B=$(cd "$GITHUB_WORKSPACE/lantern-binaries" && git rev-list -1 HEAD lantern-installer-64-bit.deb)
           echo $A

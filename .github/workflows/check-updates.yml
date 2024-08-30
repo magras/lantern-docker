@@ -1,0 +1,26 @@
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '00 16 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: lantern-docker
+          sparse-checkout: /binaries
+          sparse-checkout-cone-mode: false
+      - uses: actions/checkout@v4
+        with:
+          repository: getlantern/lantern-binaries
+          path: lantern-binaries
+          fetch-depth: 0
+          sparse-checkout: /lantern-installer-64-bit.deb
+          sparse-checkout-cone-mode: false
+      - run: |
+          set -x
+          A=$(cd lantern-docker && git ls-tree HEAD binaries | sed -n 's/^160000 commit \([[:xdigit:]]\{40\}\)\tbinaries$/\1/p')
+          B=$(cd lantern-binaries && git rev-list -1 HEAD lantern-installer-64-bit.deb)
+          [ "$A" = "$B" ]

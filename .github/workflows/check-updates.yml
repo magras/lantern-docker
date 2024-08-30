@@ -19,6 +19,6 @@ jobs:
       - uses: actions/checkout@v4
       - run: >-
           set -ex
-          A=(cd lantern-docker && git ls-tree HEAD binaries | sed -n 's/^160000 commit \([[:xdigit:]]\{40\}\)\tbinaries$/\1/p')
-          B=(cd lantern-binaries && git rev-list -1 HEAD lantern-installer-64-bit.deb)
+          A=$(cd lantern-docker && git ls-tree HEAD binaries | sed -n 's/^160000 commit \([[:xdigit:]]\{40\}\)\tbinaries$/\1/p')
+          B=$(cd lantern-binaries && git rev-list -1 HEAD lantern-installer-64-bit.deb)
           [ "$A" = "$B" ]

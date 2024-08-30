@@ -12,7 +12,6 @@ jobs:
           path: lantern-docker
           sparse-checkout: /binaries
           sparse-checkout-cone-mode: false
-          branch: check-updates
       - uses: actions/checkout@v4
         with:
           repository: getlantern/lantern-binaries

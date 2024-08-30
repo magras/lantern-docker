@@ -10,12 +10,12 @@ jobs:
       - uses: actions/checkout@v4
         with:
           path: lantern-docker
-          #sparse-checkout: binaries
+          sparse-checkout: binaries
       - uses: actions/checkout@v4
         with:
           repository: getlantern/lantern-binaries
           path: lantern-binaries
-          #sparse-checkout: lantern-installer-64-bit.deb
+          sparse-checkout: lantern-installer-64-bit.deb
       - run: |
           set -x
           A=$(cd lantern-docker && git ls-tree HEAD binaries | sed -n 's/^160000 commit \([[:xdigit:]]\{40\}\)\tbinaries$/\1/p')
